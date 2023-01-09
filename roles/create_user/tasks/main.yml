@@ -1,0 +1,9 @@
+---
+- name: add the users
+  become: yes
+  ansible.builtin.user:
+    name: "{{ item }}" 
+    state: present
+  loop: "{{ list_of_users }}"
+  tags: adduser
+

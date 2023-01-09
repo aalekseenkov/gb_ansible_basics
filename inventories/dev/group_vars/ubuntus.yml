@@ -1,0 +1,5 @@
+---
+list_of_users: ['developer1', 'developer2', 'developer3']
+test_directory: '~/test_directory'
+test_file: 'test_file'
+
