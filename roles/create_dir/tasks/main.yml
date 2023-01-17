@@ -1,0 +1,25 @@
+---
+- name: create directory
+  ansible.builtin.file:
+    path: "{{ test_directory }}"
+    state: directory
+    mode: '0755'
+  tags: createdir
+- name: create file
+  ansible.builtin.file:
+    path: '{{ test_directory }}/{{ test_file }}'
+    state: touch
+  tags: createfile
+- name: create content for the file
+  ansible.builtin.copy:
+    dest: '{{ test_directory }}/{{ test_file }}'
+    content: |
+      line 01
+      line 02
+  tags: addcontent
+- name: get file from Internet
+  ansible.builtin.get_url:
+    url: 'http://www.gomelscouts.com/index.html'
+    dest: '{{ test_directory }}/index.html'
+  tags: geturl
+

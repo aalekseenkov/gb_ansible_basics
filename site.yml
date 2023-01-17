@@ -1,0 +1,6 @@
+---
+- hosts: ubuntus
+  roles: 
+    - create_user
+    - create_dir
+
