@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ansible-playbook wordpress.yml -i inventories/dev/hosts -b -K "$@"
+ansible-playbook wordpress.yml -i inventories/dev/hosts "$@"
