@@ -1,9 +1,4 @@
 ---
-server_name: "avatest.ru"
-mysql_db: "wordpress"
-mysql_user: "wordpress"
-mysql_password: "WordpreSS0!"
-
 nginx_vhosts:
   - listen: "80"
     server_name: "{{ server_name }} www.{{ server_name }}"
