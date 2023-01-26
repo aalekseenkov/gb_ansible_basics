@@ -1,0 +1,7 @@
+*.retry
+external_roles
+ansible_log
+
+# vim buffers
+*.swp
+*.swo
