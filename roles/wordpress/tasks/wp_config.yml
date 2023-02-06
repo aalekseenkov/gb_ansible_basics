@@ -1,0 +1,7 @@
+---
+- name: Set up wp-config
+  template:
+    src: "wp-config.php.j2"
+    dest: "/var/www/{{ server_name }}/wordpress/wp-config.php"
+...
+

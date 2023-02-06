@@ -1,30 +1,22 @@
 ---
 # tasks file for wordpress
 # WordPress Configuration
-- name: create /var/www/{{ server_name }} directory for unarchiving
-  file:
-    path: /var/www/{{ server_name }}
-    state: directory
-- name: Download and unpack latest WordPress
-  unarchive:
-    src: https://wordpress.org/latest.tar.gz
-    dest: "/var/www/{{ server_name }}"
-    remote_src: yes
-    creates: "/var/www/{{ server_name }}/wordpress"
-- name: Set up wp-config
-  template:
-    src: "wp-config.php.j2"
-    dest: "/var/www/{{ server_name }}/wordpress/wp-config.php"
+- name: Setup wordpress
+  include_tasks: wp_setup.yml
+  when: setup | default("false") | bool
+
+- name: Config wordpress
+  include_tasks: wp_config.yml
+  when: owners | default("true") | bool
+
 - name: Set ownership
-  file:
-    path: "/var/www/{{ server_name }}"
-    state: directory
-    recurse: yes
-    owner: www-data
-    group: www-data
-- name: Set permissions for directories
-  shell: "/usr/bin/find /var/www/{{ server_name }}/wordpress/ -type d -exec chmod 750 {} \\;"
-- name: Set permissions for files
-  shell: "/usr/bin/find /var/www/{{ server_name }}/wordpress/ -type f -exec chmod 640 {} \\;"
+  include_tasks: wp_owners.yml
+    
+- name: Set permissions
+  include_tasks: wp_permissions.yml
+    
+- name: Inform me about the final
+  include_tasks: optional.yml
+  when: inform | default('false') | bool  
 ...
 

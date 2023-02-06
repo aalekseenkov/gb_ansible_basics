@@ -1,0 +1,12 @@
+---
+- name: create /var/www/{{ server_name }} directory for unarchiving
+  file:
+    path: /var/www/{{ server_name }}
+    state: directory
+- name: Download and unpack latest WordPress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: "/var/www/{{ server_name }}"
+    remote_src: yes
+    creates: "/var/www/{{ server_name }}/wordpress"
+...
