@@ -1,0 +1,10 @@
+---
+- hosts: load_balancer
+  become: true
+  roles:
+    - {role: nginxlb}
+
+- hosts: nginx_servers
+  become: true
+  roles:
+    - {role: nginxsrv}
