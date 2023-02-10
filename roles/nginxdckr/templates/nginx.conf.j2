@@ -1,0 +1,14 @@
+upstream backend {
+    server backend_1:80;
+    server backend_2:80;
+    server backend_3:80;
+}
+
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://backend;
+    }
+}
