@@ -2,9 +2,17 @@
 - hosts: load_balancer
   become: true
   roles:
-    - {role: nginxlb}
+    - role: nginxlb
+      tags: baremetal
 
 - hosts: nginx_servers
   become: true
   roles:
-    - {role: nginxsrv}
+    - role: nginxsrv
+      tags: baremetal
+
+- hosts: nginx_docker
+  become: true
+  roles:
+    - role: nginxdckr
+      tags: docker
