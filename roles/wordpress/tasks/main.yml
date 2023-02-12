@@ -1,6 +1,15 @@
 ---
 # tasks file for wordpress
 # WordPress Configuration
+- name: test asserts
+  ansible.builtin.assert:
+    that:
+      - mysql_db is defined
+      - mysql_user is defined
+      - mysql_password is defined
+    fail_msg: "Variables are not correct!"
+    success_msg: "Variables are good!"
+
 - name: Setup wordpress
   include_tasks: wp_setup.yml
   when: setup | default("false") | bool
@@ -11,12 +20,10 @@
 
 - name: Set ownership
   include_tasks: wp_owners.yml
-    
+
 - name: Set permissions
   include_tasks: wp_permissions.yml
-    
+
 - name: Inform me about the final
   include_tasks: optional.yml
-  when: inform | default('false') | bool  
-...
-
+  when: inform | default('false') | bool
