@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-ansible-playbook nginx.yml -i inventories/nginx/hosts -b -K "$@"
+ansible-playbook infrachecks.yml \
+  -i inventories/infrachecks/hosts \
+  -b -K --ask-vault-pass "$@"

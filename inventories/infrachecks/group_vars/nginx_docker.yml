@@ -1,0 +1,6 @@
+---
+docker_network: back_net
+container_count: 4
+default_container_name: docker
+default_container_image: nginx
+default_container_command: sleep 1d
