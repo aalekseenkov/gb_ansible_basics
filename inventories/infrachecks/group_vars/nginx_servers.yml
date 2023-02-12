@@ -1,0 +1,4 @@
+---
+server_ipv4: "{{ ansible_default_ipv4.address }}"
+document_root: /var/www/html
+index_file: index.html
